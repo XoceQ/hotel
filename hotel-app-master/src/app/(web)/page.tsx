@@ -7,13 +7,12 @@ import FeaturedRoom from "@/components/FeaturedRoom/FeaturedRoom";
 
 const Home = async () => {
     const featuredRoom = await getFeaturedRoom();
-    console.log("Featured Room Data:", featuredRoom); // Verificar qué devuelve la consulta
 
     return (
         <>
             <HeroSection/>
             <PageSearch/>
-            <FeaturedRoom/>
+            <FeaturedRoom featuredRoom={featuredRoom}/>
             <Gallery/>
             <NewsLetter/>
         </>

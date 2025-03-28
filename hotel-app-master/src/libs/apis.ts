@@ -1,6 +1,6 @@
 import sanityClient from './sanity';
 import * as queries from './sanityQueries';
-import {Room} from "@/models/room";
+import {Room} from "@/app/models/room";
 
 
 export async function getFeaturedRoom() {
@@ -9,6 +9,5 @@ export async function getFeaturedRoom() {
         {},
         { cache: 'no-cache' }
     );
-
     return result;
 }

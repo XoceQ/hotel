@@ -13,14 +13,14 @@ const Footer = () => {
 
                     <div className='flex flex-wrap gap-16 items-center justify-between'>
                         <div className='flex-1'>
-                            <p>123 Road</p>
+                            <p> Tv. 16a #45F-16</p>
                             <div className='flex items-center py-4'>
                                 <BsFillSendFill/>
                                 <p className="ml-2">code with Kose</p>
                             </div>
                             <div className='flex items-center '>
                                 <BsTelephoneOutbound/>
-                                <p className="ml-2">000-000-00-00</p>
+                                <p className="ml-2">315-399-32-02</p>
                             </div>
                             <div className='flex items-center py-4'>
                                 <BiMessageDetail/>
