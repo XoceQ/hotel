@@ -12,6 +12,7 @@ import { getRoom } from '@/libs/apis';
 import LoadingSpinner from '../../loading';
 import HotelPhotoGallery from '@/components/HotelPhotoGallery/HotelPhotoGallery';
 import BookRoomCta from '@/components/BookRoomCta/BookRoomCta';
+import toast from 'react-hot-toast';
 
 
 const RoomDetails = (props: { params: { slug: string } }) => {
@@ -34,6 +35,22 @@ const RoomDetails = (props: { params: { slug: string } }) => {
 
     if (!room) return <LoadingSpinner />;
 
+    const calcMinCheckoutDate = () => {
+        if (checkinDate) {
+            const nextDay = new Date(checkinDate);
+            nextDay.setDate(nextDay.getDate() + 1);
+            return nextDay;
+        }
+        return null;
+    };
+
+
+    const calcNumDays = () => {
+        if (!checkinDate || !checkoutDate) return;
+        const timeDiff = checkoutDate.getTime() - checkinDate.getTime();
+        const noOfDays = Math.ceil(timeDiff / (24 * 60 * 60 * 1000));
+        return noOfDays;
+    };
     return (
         <div>
             <HotelPhotoGallery photos={room.images} />
@@ -103,6 +120,7 @@ const RoomDetails = (props: { params: { slug: string } }) => {
                                     </div>
                                 </div>
                             </div>
+
                             <div className='shadow dark:shadow-white rounded-lg p-6'>
                                 <div className='items-center mb-4'>
                                     <p className='md:text-lg font-semibold'>Customer Reviews</p>
@@ -110,12 +128,21 @@ const RoomDetails = (props: { params: { slug: string } }) => {
                                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
+
                     <div className='md:col-span-4 rounded-xl shadow-lg dark:shadow dark:shadow-white sticky top-10 h-fit overflow-auto'>
-                        <BookRoomCta discount={room.discount} price={room.price}/>
+                        <BookRoomCta
+                            discount={room.discount}
+                            price={room.price}
+                            specialNote={room.specialNote}
+                            checkinDate={checkinDate}
+                            setCheckinDate={setCheckinDate}
+                            checkoutDate={checkoutDate}
+                            setCheckoutDate={setCheckoutDate}
+                            calcMinCheckoutDate={calcMinCheckoutDate}
+
+                        />
                     </div>
                 </div>
             </div>
