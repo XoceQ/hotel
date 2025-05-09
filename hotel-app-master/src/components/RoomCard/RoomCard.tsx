@@ -19,7 +19,7 @@ const RoomCard: FC<Props> = props => {
         <Image
           src={coverImage.url}
           alt={name}
-          width={250}
+          width={350}
           height={250}
           className='img scale-animation'
         />
@@ -33,11 +33,11 @@ const RoomCard: FC<Props> = props => {
 
         <p className='pt-2 text-xs'>{type} Room</p>
 
-        <p className='pt-3 pb-6'>{description.slice(1, 100)}...</p>
+        <p className='pt-3 pb-6'>{description.slice(0, 200)}...</p>
 
         <Link
           href={`/rooms/${slug.current}`}
-          className='bg-primary inline-block text-center w-full py-4 rounded-xl text-white text-xl font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500'
+          className=' bg-primary inline-block text-center w-full py-4 rounded-xl text-white text-xl font-bold hover:-translate-y-2 hover:shadow-lg transition-all duration-500'
         >
           {isBooked ? 'BOOKED' : 'BOOK NOW'}
         </Link>
