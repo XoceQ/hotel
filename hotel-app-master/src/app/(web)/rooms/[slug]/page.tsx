@@ -44,6 +44,18 @@ const RoomDetails = (props: { params: { slug: string } }) => {
         return null;
     };
 
+    const handleBookNowClick = async () => {
+        if (!checkinDate || !checkoutDate)
+            return toast.error('Please provide checkin / checkout date');
+
+        if (checkinDate > checkoutDate)
+            return toast.error('Please choose a valid checkin period');
+
+        const numberOfDays = calcNumDays();
+
+        const hotelRoomSlug = room.slug.current;
+
+    }
 
     const calcNumDays = () => {
         if (!checkinDate || !checkoutDate) return;
@@ -51,6 +63,8 @@ const RoomDetails = (props: { params: { slug: string } }) => {
         const noOfDays = Math.ceil(timeDiff / (24 * 60 * 60 * 1000));
         return noOfDays;
     };
+
+
     return (
         <div>
             <HotelPhotoGallery photos={room.images} />
@@ -141,6 +155,12 @@ const RoomDetails = (props: { params: { slug: string } }) => {
                             checkoutDate={checkoutDate}
                             setCheckoutDate={setCheckoutDate}
                             calcMinCheckoutDate={calcMinCheckoutDate}
+                            adults={adults}
+                            noOfChildren={noOfChildren}
+                            setAdults={setAdults}
+                            setNoOfChildren={setNoOfChildren}
+                            isBooked={room.isBooked}
+                            handleBookNowClick={handleBookNowClick}
 
                         />
                     </div>
