@@ -13,6 +13,7 @@ import LoadingSpinner from '../../loading';
 import HotelPhotoGallery from '@/components/HotelPhotoGallery/HotelPhotoGallery';
 import BookRoomCta from '@/components/BookRoomCta/BookRoomCta';
 import toast from 'react-hot-toast';
+import RoomReview from '@/components/RoomReview/RoomReview';
 
 
 const RoomDetails = (props: { params: { slug: string } }) => {
@@ -140,6 +141,7 @@ const RoomDetails = (props: { params: { slug: string } }) => {
                                     <p className='md:text-lg font-semibold'>Customer Reviews</p>
                                 </div>
                                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                                    <RoomReview roomId={room._id} />
                                 </div>
                             </div>
                         </div>
@@ -161,7 +163,6 @@ const RoomDetails = (props: { params: { slug: string } }) => {
                             setNoOfChildren={setNoOfChildren}
                             isBooked={room.isBooked}
                             handleBookNowClick={handleBookNowClick}
-
                         />
                     </div>
                 </div>
